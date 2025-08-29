@@ -3,9 +3,10 @@ import { useState } from 'react';
 const Button = ({ text, onClick }) => <button onClick={onClick}>{text}</button>;
 
 const StatisticLine = ({ text, value }) => (
-	<p>
-		{text}: {value}
-	</p>
+	<>
+		<td>{text}</td>
+		<td>{value}</td>
+	</>
 );
 
 const Statistics = ({ good, neutral, bad, total, average, positive }) => {
@@ -14,12 +15,38 @@ const Statistics = ({ good, neutral, bad, total, average, positive }) => {
 	) : (
 		<section>
 			<h2>Statistics</h2>
-			<StatisticLine text={'Good'} value={good} />
-			<StatisticLine text={'Neutral'} value={neutral} />
-			<StatisticLine text={'Bad'} value={bad} />
-			<StatisticLine text={'All'} value={total} />
-			<StatisticLine text={'Average'} value={average} />
-			<StatisticLine text={'Positive'} value={positive + "%"} />
+			<table>
+				<tbody>
+					<tr>
+						<StatisticLine text={'Good'} value={good} />
+					</tr>
+				</tbody>
+				<tbody>
+					<tr>
+						<StatisticLine text={'Neutral'} value={neutral} />
+					</tr>
+				</tbody>
+				<tbody>
+					<tr>
+						<StatisticLine text={'Bad'} value={bad} />
+					</tr>
+				</tbody>
+				<tbody>
+					<tr>
+						<StatisticLine text={'All'} value={total} />
+					</tr>
+				</tbody>
+				<tbody>
+					<tr>
+						<StatisticLine text={'Average'} value={average.toFixed(1)} />
+					</tr>
+				</tbody>
+				<tbody>
+					<tr>
+						<StatisticLine text={'Positive'} value={positive.toFixed(1) + '%'} />
+					</tr>
+				</tbody>
+			</table>
 		</section>
 	);
 };
